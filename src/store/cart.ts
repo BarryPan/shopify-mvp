@@ -27,6 +27,21 @@ export interface Line {
   imageUrl: string;
 }
 
+type CartLineEdge = {
+  node: {
+    id: string;
+    quantity: number;
+    merchandise: {
+      id: string;
+      price: { amount: string };
+      product: {
+        title: string;
+        images: { edges: { node: { url: string } }[] };
+      };
+    };
+  };
+};
+
 interface CartState {
   /* persisted */
   cartId?: string;
@@ -117,10 +132,10 @@ export const useCart = create<CartState>()(
         const { cartId } = get();
         if (!cartId) return;
 
-        const data = await shopifyFetch<{
+       const data = await shopifyFetch<{
           cart: {
             checkoutUrl: string;
-            lines: { edges: any[] };
+            lines: { edges: CartLineEdge[] };
           };
         }>(CART_QUERY, { cartId });
 
@@ -130,13 +145,12 @@ export const useCart = create<CartState>()(
           quantity: node.quantity,
           title: node.merchandise.product.title,
           price: node.merchandise.price.amount,
-          imageUrl: node.merchandise.product.images.edges[0]?.node.url ?? "",
+          imageUrl:
+            node.merchandise.product.images.edges[0]?.node.url ?? "",
         }));
 
-        set({
-          lines,
-          checkoutUrl: data.cart.checkoutUrl,
-        });
+
+       set({ lines, checkoutUrl: data.cart.checkoutUrl });
       },
 
       /* ---------------------------------------------------------

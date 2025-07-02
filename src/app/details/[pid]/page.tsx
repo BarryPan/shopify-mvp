@@ -3,7 +3,6 @@ import { shopifyFetch } from "@/lib/shopify";
 import Breadcrumb from "@/components/product/Breadcrumb";
 import Gallery from "@/components/product/Gallery";
 import Details from "@/components/product/Details";
-import AddToCartForm from "@/components/cart/AddToCartForm";
 import {PRODUCTS_DETAIL} from "@/lib/queries/products";
 import AddToCartButton from "@/components/cart/AddToCartButton";
 

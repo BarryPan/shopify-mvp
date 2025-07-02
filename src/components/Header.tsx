@@ -2,11 +2,10 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Menu, X, ShoppingCart, Search, Globe, User } from "lucide-react";
+import { Menu, X, ShoppingCart, User } from "lucide-react";
 import Image from "next/image";
 import { useCart } from "@/store/cart"; // optional: show cart qty badge
 import { useUI } from '@/store/ui';  
-import { cn } from "@/lib/utils"; // helper to merge className, if you have one
 import { useSession, signOut } from 'next-auth/react'; 
 
 interface NavItem {
@@ -24,9 +23,6 @@ export default function Header() {
   const cartQty = useCart((s) => s.lines.reduce((n, l) => n + l.quantity, 0));
   const toggleCartDrawer = useUI((s) => s.toggleCart); 
   const { data: session } = useSession(); 
-  const handleClick = () => {
-    router.push('/profile');
-  };
   return (
     <header className="sticky top-0 z-30 w-full bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:py-4 lg:px-6">

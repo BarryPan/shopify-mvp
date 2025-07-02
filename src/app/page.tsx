@@ -1,5 +1,5 @@
 import { shopifyFetch } from '@/lib/shopify';
-import { PRODUCTS_QUERY, FRONT_PAGE_PRODUCTS_QUERY } from '@/lib/queries/products';
+import { FRONT_PAGE_PRODUCTS_QUERY } from '@/lib/queries/products';
 import ProductCard from '@/components/ProductCard';
 import Link from "next/link";
 import { Search } from 'lucide-react';

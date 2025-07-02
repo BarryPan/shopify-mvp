@@ -2,7 +2,7 @@ type Props = {
   productType?: string;
   title: string;
   price?: { amount: string; currencyCode: string };
-  description?: string;
+  shortdescription?: string;
   children: React.ReactNode; // 放 AddToCartForm
 };
 
