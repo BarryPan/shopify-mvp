@@ -3,9 +3,8 @@ import { shopifyFetch } from "@/lib/shopifyFetch";
 
 export const dynamic = "force-dynamic";          // always fresh, optional
 
-type PageProps = { params: { pid: string } };
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: { pid: string } } ): Promise<Metadata> {
   return { title: `Product #${params.pid} – Details` };
 }
 
@@ -29,7 +28,7 @@ const PRODUCT_DETAIL_QUERY = /* GraphQL */ `
   }
 `;
 
-export default async function ProductDetailPage({ params }: PageProps) {
+export default async function ProductDetailPage({ params }: { params: { pid: string } } ) {
   const globalId = `gid://shopify/Product/${params.pid}`;
   const data = await shopifyFetch(PRODUCT_DETAIL_QUERY, { id: globalId });
 
