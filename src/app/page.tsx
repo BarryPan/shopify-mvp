@@ -15,7 +15,7 @@ interface Edge {
     };
   };
 }
-
+export const dynamic = "force-dynamic";
 export default async function ShopPage() {
   const data: { products: { edges: Edge[] } } =
     await shopifyFetch(FRONT_PAGE_PRODUCTS_QUERY, { first: 4 });
