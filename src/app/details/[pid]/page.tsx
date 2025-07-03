@@ -8,13 +8,12 @@ import AddToCartButton from "@/components/cart/AddToCartButton";
 
 export const dynamic = "force-dynamic";
 
-type PageProps = { params: { pid: string } };
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: { pid: string } } ): Promise<Metadata> {
   return { title: `Product #${params.pid} – Details` };
 }
 
-export default async function ProductDetailPage({ params }: PageProps) {
+export default async function ProductDetailPage({ params }: { params: { pid: string } } ) {
   const globalId = `gid://shopify/Product/${params.pid}`;
   const { node: product } = await shopifyFetch(PRODUCTS_DETAIL, { id: globalId });
   if (!product) return <p className="p-8">Product not found.</p>;

@@ -6,7 +6,7 @@ type Props = {
   children: React.ReactNode; // 放 AddToCartForm
 };
 
-export default function Details({ productType, title, price, description, shortdescription, children }: Props) {
+export default function Details({ productType, title, price, shortdescription, children }: Props) {
   return (
     <div className="flex flex-col">
       <p className="text-sm text-gray-500 mb-1">{productType ?? "Fruits"}</p>
